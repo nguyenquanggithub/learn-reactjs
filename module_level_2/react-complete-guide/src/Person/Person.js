@@ -5,7 +5,15 @@ const randomAge = (props) => {
 }
 
 const person = (props) => {
-  return <p>I'm a {props.name} Person. I'm {randomAge(props)} years old.</p>
+  //let {age, name} = props; 
+  //const something = 'value';
+  return (
+    <div>
+      <p>I'm a {props.name} Person. I'm {randomAge(props)} years old.</p>
+      <div>{props.children}</div>
+      <div>{props.children}</div>
+    </div>
+  )
 }
 
 export default person;
