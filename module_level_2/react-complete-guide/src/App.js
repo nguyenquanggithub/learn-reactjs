@@ -15,14 +15,24 @@ class App extends Component {
     otherState: 'some other value',
   };
 
-  switchNameHandler = () => {
+  switchNameHandler = (newName) => {
     // this -> App
     //this.state.persons[0].name = 'Quang Nguyen'; //Don't do this
     this.setState({
       persons: [
-        { name: 'QuangNguyen', age: 12 },
-        { name: 'NgocBao', age: 15 },
-        { name: 'DuyenKieu', age: 17 },
+        { name: newName, age: 12 },
+        { name: newName, age: 15 },
+        { name: newName, age: 17 },
+      ],
+    });
+  };
+
+  nameChangedHandler = (event) => {
+    this.setState({
+      persons: [
+        { name: 'Quang', age: 12 },
+        { name: event.target.value, age: 15 },
+        { name: 'Quang', age: 17 },
       ],
     });
   };
@@ -30,11 +40,14 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <button onClick={this.switchNameHandler}>Switch Name</button>
+        <button onClick={() => this.switchNameHandler('Maximun')}>
+          Switch Name
+        </button>
         <Person
           name={this.state.persons[0].name}
           age={this.state.persons[0].age}
-          click={this.switchNameHandler}
+          click={this.switchNameHandler.bind(this, 'Max!')}
+          changed={this.nameChangedHandler}
         />
         <Person
           name={this.state.persons[1].name}
@@ -51,7 +64,7 @@ class App extends Component {
           <p>Children ReactJS</p>
         </Person>
 
-        <Human name="Quang" age="10" />
+        <Human name="Quang" age="10" click={this.switchNameHandler} />
         <Human name="Ngoc" age="20">
           I like an apple.
         </Human>

@@ -12,6 +12,7 @@ const person = (props) => {
       <p onClick={props.click}>
         I'm a {props.name} Person. I'm {randomAge(props)} years old.
       </p>
+      <input type="text" onChange={props.changed} value={props.name} />
     </div>
   );
 };
